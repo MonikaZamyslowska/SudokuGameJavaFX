@@ -36,4 +36,14 @@ public class SudokuGenerator {
             { 0, 0, 8, 5, 0, 0, 0, 1, 0 },
             { 0, 9, 0, 0, 0, 0, 4, 0, 0 }
     };
+
+    public int[][] generateBoard(int level) {
+        if (level == 1)
+            return normalBoard;
+
+        if (level == 2)
+            return hardBoard;
+
+        return easyBoard;
+    }
 }

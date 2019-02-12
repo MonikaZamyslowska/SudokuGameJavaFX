@@ -3,16 +3,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <children>
-      <GridPane gridLinesVisible="true" layoutX="28.0" layoutY="36.0" prefHeight="306.0" prefWidth="348.0">
+      <GridPane gridLinesVisible="true" layoutX="14.0" layoutY="36.0" prefHeight="306.0" prefWidth="348.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,16 +37,29 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Label layoutX="391.0" layoutY="45.0" prefHeight="40.0" prefWidth="174.0" text="Choose level and klick start!">
+      <Label layoutX="391.0" layoutY="36.0" prefHeight="40.0" prefWidth="174.0" text="Choose level and klick start!">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <RadioButton layoutX="405.0" layoutY="85.0" mnemonicParsing="false" text="Easy" />
-      <RadioButton layoutX="405.0" layoutY="117.0" mnemonicParsing="false" text="Medium" />
-      <RadioButton layoutX="405.0" layoutY="150.0" mnemonicParsing="false" text="Hard" />
-      <Button layoutX="403.0" layoutY="189.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="148.0" text="Start new Game!" />
-      <Button layoutX="404.0" layoutY="237.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="148.0" text="Restart" />
-      <Button layoutX="403.0" layoutY="289.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="148.0" text="Solve" />
+      <VBox layoutX="404.0" layoutY="76.0" prefHeight="88.0" prefWidth="133.0" spacing="10.0">
+         <children>
+            <RadioButton fx:id="radioButtonEasy" alignment="CENTER_LEFT" mnemonicParsing="false" onAction="#radioButtonChanged" selected="true" text="Easy">
+               <toggleGroup>
+                  <ToggleGroup fx:id="levelToggleGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="radioButtonMedium" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#radioButtonChanged" text="Medium" toggleGroup="$levelToggleGroup" />
+            <RadioButton fx:id="radioButtonHard" mnemonicParsing="false" onAction="#radioButtonChanged" text="Hard" toggleGroup="$levelToggleGroup" />
+         </children>
+      </VBox>
+      <VBox layoutX="404.0" layoutY="179.0" prefHeight="141.0" prefWidth="133.0" spacing="20.0">
+         <children>
+            <Button id="gameButton" mnemonicParsing="false" onAction="#handleButtonStartAction" prefHeight="31.0" prefWidth="148.0" text="Start new Game!" />
+            <Button id="restartButton" mnemonicParsing="false" onAction="#handleButtonRestartAction" prefHeight="31.0" prefWidth="148.0" text="Restart" />
+            <Button id="solveButton" mnemonicParsing="false" onAction="#handleButtonSolveEvent" prefHeight="31.0" prefWidth="132.0" text="Solve" />
+         </children>
+      </VBox>
+      <Label fx:id="label" layoutX="415.0" layoutY="332.0" prefHeight="21.0" prefWidth="121.0" />
    </children>
 </AnchorPane>

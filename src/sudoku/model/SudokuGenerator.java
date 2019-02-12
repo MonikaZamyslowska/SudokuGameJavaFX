@@ -1,4 +1,4 @@
-package model;
+package sudoku.model;
 
 public class SudokuGenerator {
     int[][] easyBoard = {

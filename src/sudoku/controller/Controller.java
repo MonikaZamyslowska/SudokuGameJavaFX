@@ -1,4 +1,4 @@
-package controller;
+package sudoku.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +8,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
-import model.SudokuGenerator;
+import sudoku.model.SudokuGenerator;
 
 public class Controller {
     public static String EASY = "easy";
@@ -16,7 +16,6 @@ public class Controller {
     public static String HARD = "hard";
 
     private SudokuGenerator sudokuGenerator = new SudokuGenerator();
-
     private int[][] board;
     private int level = 0;
 
@@ -61,18 +60,21 @@ public class Controller {
 
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
+                TextField textField = new TextField();
                 int actualNumber = board[row][col];
-                if (actualNumber == 0) {
-                    TextField textField = new TextField();
-                    sudokuGrid.add(textField, col, row, 1,1);
-                    textField.setAlignment(Pos.CENTER);
-                } else {
-                    Label label = new Label(String.valueOf(actualNumber));
-                    sudokuGrid.add(label, col, row, 1,1); // wyśrodkowanie label
+                if (col % 3 == 0 && row % 3 == 0) {
+                    textField.getStyleClass().add("subsection");
                 }
+                if (actualNumber == 0) {
+                    sudokuGrid.add(textField, col, row, 1,1);
+                } else {
+                    textField.setText(String.valueOf(actualNumber));
+                    textField.setEditable(false);
+                    sudokuGrid.add(textField, col, row, 1,1);
+                }
+                textField.setAlignment(Pos.CENTER);
             }
         }
-        sudokuGrid.setAlignment(Pos.CENTER);
     }
 
     @FXML

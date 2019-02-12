@@ -1,4 +1,4 @@
-package view;
+package sudoku.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

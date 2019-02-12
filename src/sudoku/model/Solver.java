@@ -1,4 +1,4 @@
-package model;
+package sudoku.model;
 
 public class Solver {
     public static int MIN_VALUE = 1;

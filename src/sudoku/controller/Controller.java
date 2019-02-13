@@ -32,13 +32,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        sudokuBoard = new SudokuBoard();
-        playerBoard = new int[9][9];
-        initialBoard = new int[9][9];
-        GraphicsContext context = canvas.getGraphicsContext2D();
-        drawSudokuGridOnCanvas(context);
-        selectedCol = 0;
-        selectedRow = 0;
+        reloadApp();
     }
 
     @FXML
@@ -57,36 +51,20 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void canvasMouseClicked() {
-        canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                int mouse_x = (int) event.getX();
-                int mouse_y = (int) event.getY();
-
-                selectedCol = mouse_x/50;
-                selectedRow = mouse_y/50;
-
-                drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
-            }
-        });
-    }
-
-    @FXML
     public void handleButtonStartAction(ActionEvent event) {
-        sudokuBoard.setPlayerBoard(new int[9][9]);
+        reloadApp();
         initialBoard = sudokuBoard.generateBoard(level);
         playerBoard = sudokuBoard.getPlayerBoard();
         drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
     }
 
-    /*
-     * popracować nad zmianą kolorou czcionki podczas rozwiązywania sudoku (pętla, zmiana podczas rysowania)
-     */
-
     @FXML
     public void handleButtonSolveEvent(ActionEvent event) {
+        playerBoard = new int[9][9];
+        initialBoard = new int[9][9];
         sudokuBoard.setPlayerBoard(new int[9][9]);
+        sudokuBoard.setBoard(new int[9][9]);
+        initialBoard = sudokuBoard.generateBoard(level);
         initialBoard = sudokuBoard.generateSolvingBoard(initialBoard);
         drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
     }
@@ -145,6 +123,22 @@ public class Controller implements Initializable {
         drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
     }
 
+    @FXML
+    public void canvasMouseClicked() {
+        canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                int mouse_x = (int) event.getX();
+                int mouse_y = (int) event.getY();
+
+                selectedCol = mouse_x/50;
+                selectedRow = mouse_y/50;
+
+                drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+            }
+        });
+    }
+
 
     public void drawSudokuGridOnCanvas(GraphicsContext context) {
         context.clearRect(0, 0, 450, 450);
@@ -153,7 +147,7 @@ public class Controller implements Initializable {
                 int position_y = row * 50 + 2;
                 int position_x = col * 50 + 2;
                 int width = 46;
-                context.setFill(Color.WHITE);
+                context.setFill(Color.LAVENDER);
                 context.fillRoundRect(position_x, position_y, width, width, 10, 10);
             }
         }
@@ -180,19 +174,29 @@ public class Controller implements Initializable {
                 int actualNumber = playerBoard[row][col];
                 int position_y = row * 50 + 30;
                 int position_x = col * 50 + 20;
-                context.setFill(Color.BLUE);
-                context.setFont(new Font(22));
+                context.setFill(Color.DARKMAGENTA);
+                context.setFont(new Font(20));
                 if(actualNumber != 0) {
                     context.fillText(actualNumber + "", position_x, position_y);
                 }
             }
         }
 
-        if(sudokuBoard.checkForSuccessGeneral() == true) {
+        if(sudokuBoard.checkForSuccessGeneral()) {
             context.clearRect(0, 0, 450, 450);
             context.setFill(Color.GREEN);
             context.setFont(new Font(36));
             context.fillText("SUCCESS!", 150, 250);
         }
+    }
+
+    public void reloadApp() {
+        sudokuBoard = new SudokuBoard();
+        playerBoard = new int[9][9];
+        initialBoard = new int[9][9];
+        GraphicsContext context = canvas.getGraphicsContext2D();
+        drawSudokuGridOnCanvas(context);
+        selectedCol = 0;
+        selectedRow = 0;
     }
 }

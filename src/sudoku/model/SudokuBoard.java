@@ -102,7 +102,13 @@ public class SudokuBoard {
         return playerBoard;
     }
 
+    public void setBoard(int[][] board) {
+        this.board = board;
+    }
+
     public void setPlayerBoard(int[][] playerBoard) {
         this.playerBoard = playerBoard;
     }
+
+
 }

@@ -1,6 +1,8 @@
 package sudoku.model;
 
-public class Solver {
+import java.util.Observable;
+
+public class SudokuSolver extends Observable {
     public static int MIN_VALUE = 1;
     public static int MAX_VALUE = 9;
     public static int EMPTY = 0;
@@ -8,8 +10,9 @@ public class Solver {
     public static int BOARD_START_INDEX = 0;
     public static int BOARD_SIZE = 9;
 
-    public boolean solve(int[][] board) {
 
+
+    public boolean solve(int[][] board) {
         for (int row = BOARD_START_INDEX; row < BOARD_SIZE; row++) {
             for (int col = BOARD_START_INDEX; col < BOARD_SIZE; col++) {
                 if (board[row][col] == EMPTY) {
@@ -56,7 +59,6 @@ public class Solver {
     public boolean containsInSubsection(int[][] board, int row, int col, int num) {
         int contRowStart = (row / SUBSECTION_SIZE) * 3;
         int contRowEnd = contRowStart + SUBSECTION_SIZE;
-
         int contColStart = (col / SUBSECTION_SIZE) * 3;
         int contColEnd = contColStart + SUBSECTION_SIZE;
 

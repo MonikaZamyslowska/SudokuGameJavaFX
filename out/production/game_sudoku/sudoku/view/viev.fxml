@@ -31,15 +31,15 @@
       <Button id="gameButton" fx:id="startButton" layoutX="518.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleButtonStartAction" prefHeight="31.0" prefWidth="160.0" text="Start new Game!" />
       <Button id="solveButton" layoutX="516.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleButtonSolveEvent" prefHeight="31.0" prefWidth="160.0" text="Solve" />
       <Button id="restartButton" layoutX="516.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleButtonRestartAction" prefHeight="31.0" prefWidth="160.0" text="Restart" />
-      <Canvas fx:id="canvas" height="450.0" layoutX="14.0" layoutY="18.0" width="450.0" />
-      <Button fx:id="buttonOne" layoutX="518.0" layoutY="202.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="1" />
-      <Button fx:id="buttonTwo" layoutX="573.0" layoutY="202.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="2" />
-      <Button fx:id="buttonThree" layoutX="628.0" layoutY="202.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="3" />
-      <Button fx:id="buttonFour" layoutX="518.0" layoutY="259.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="4" />
-      <Button fx:id="buttonFive" layoutX="573.0" layoutY="259.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="5" />
-      <Button fx:id="buttonSix" layoutX="628.0" layoutY="259.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="6" />
-      <Button fx:id="buttonSeven" layoutX="518.0" layoutY="318.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="7" />
-      <Button fx:id="buttonEight" layoutX="573.0" layoutY="318.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="8" />
-      <Button fx:id="buttonNine" layoutX="628.0" layoutY="318.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="9" />
+      <Canvas fx:id="canvas" height="450.0" layoutX="14.0" layoutY="18.0" onMouseClicked="#canvasMouseClicked" width="450.0" />
+      <Button fx:id="buttonOne" layoutX="518.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleButtonOneAction" prefHeight="50.0" prefWidth="50.0" text="1" />
+      <Button fx:id="buttonTwo" layoutX="573.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleButtonTwoAction" prefHeight="50.0" prefWidth="50.0" text="2" />
+      <Button fx:id="buttonThree" layoutX="628.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleButtonThreeAction" prefHeight="50.0" prefWidth="50.0" text="3" />
+      <Button fx:id="buttonFour" layoutX="518.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleButtonFourAction" prefHeight="50.0" prefWidth="50.0" text="4" />
+      <Button fx:id="buttonFive" layoutX="573.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleButtonFiveAction" prefHeight="50.0" prefWidth="50.0" text="5" />
+      <Button fx:id="buttonSix" layoutX="628.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleButtonSixAction" prefHeight="50.0" prefWidth="50.0" text="6" />
+      <Button fx:id="buttonSeven" layoutX="518.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleButtonSevenAction" prefHeight="50.0" prefWidth="50.0" text="7" />
+      <Button fx:id="buttonEight" layoutX="573.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleButtonEightAction" prefHeight="50.0" prefWidth="50.0" text="8" />
+      <Button fx:id="buttonNine" layoutX="628.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleButtonNineAction" prefHeight="50.0" prefWidth="50.0" text="9" />
    </children>
 </AnchorPane>

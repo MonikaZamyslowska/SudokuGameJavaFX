@@ -3,7 +3,6 @@ package sudoku.model;
 public class SudokuBoard {
     private SudokuSolver sudokuSolver;
     private int[][] playerBoard;
-    private int[][] generatedBoard;
     private int[][] board;
 
     public SudokuBoard() {
@@ -29,6 +28,11 @@ public class SudokuBoard {
 //
 //        return generatedBoard;
 //    }
+    public void modifyUsersArea(int value, int row, int col) {
+        if (board[row][col] == 0) {
+            playerBoard[row][col] = value;
+        }
+    }
 
     public boolean checkForSuccessGeneral() {
         sudokuSolver = new SudokuSolver();
@@ -50,7 +54,6 @@ public class SudokuBoard {
                 if (!sudokuSolver.isValid(combined, row, col, actualNumber)) return false;
             }
         }
-
         return true;
     }
 

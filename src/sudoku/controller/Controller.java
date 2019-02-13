@@ -1,42 +1,48 @@
 package sudoku.controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import sudoku.model.SudokuBoard;
 
-public class Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Controller implements Initializable {
     public static String EASY = "easy";
     public static String MEDIUM = "medium";
     public static String HARD = "hard";
 
-    private SudokuBoard sudokuBoard = new SudokuBoard();
+    private SudokuBoard sudokuBoard;
     private int selectedRow;
     private int selectedCol;
-    private int[][] board;
     private int level = 0;
 
     @FXML private RadioButton radioButtonEasy;
     @FXML private RadioButton radioButtonMedium;
     @FXML private RadioButton radioButtonHard;
     @FXML private ToggleGroup levelToggleGroup;
-    @FXML private Button buttonOne;
-    @FXML private Button buttonTwo;
-    @FXML private Button buttonThree;
-    @FXML private Button buttonFour;
-    @FXML private Button buttonFive;
-    @FXML private Button buttonSix;
-    @FXML private Button buttonSeven;
-    @FXML private Button buttonEight;
-    @FXML private Button buttonNine;
     @FXML private Canvas canvas;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        sudokuBoard = new SudokuBoard();
+        GraphicsContext context = canvas.getGraphicsContext2D();
+        drawSudokuGridOnCanvas(context);
+        selectedCol = 0;
+        selectedRow = 0;
+    }
+
+    @FXML
     public void radioButtonChanged() {
         if (this.levelToggleGroup.getSelectedToggle().equals(radioButtonEasy)) {
             level = 0;
@@ -49,6 +55,22 @@ public class Controller {
         if (this.levelToggleGroup.getSelectedToggle().equals(radioButtonHard)) {
             level = 2;
         }
+    }
+
+    @FXML
+    public void canvasMouseClicked() {
+        canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                int mouse_x = (int) event.getX();
+                int mouse_y = (int) event.getY();
+
+                selectedCol = mouse_x/50;
+                selectedRow = mouse_y/50;
+
+                drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+            }
+        });
     }
 
     @FXML
@@ -65,6 +87,61 @@ public class Controller {
     public void handleButtonSolveEvent(ActionEvent event) {
 
     }
+
+    @FXML
+    public void handleButtonOneAction(ActionEvent event) {
+        sudokuBoard.modifyUsersArea(1, selectedRow, selectedCol);
+        drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+    }
+
+    @FXML
+    public void handleButtonTwoAction(ActionEvent event) {
+        sudokuBoard.modifyUsersArea(2, selectedRow, selectedCol);
+        drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+    }
+
+    @FXML
+    public void handleButtonThreeAction(ActionEvent event) {
+        sudokuBoard.modifyUsersArea(3, selectedRow, selectedCol);
+        drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+    }
+
+    @FXML
+    public void handleButtonFourAction(ActionEvent event) {
+        sudokuBoard.modifyUsersArea(4, selectedRow, selectedCol);
+        drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+    }
+
+    @FXML
+    public void handleButtonFiveAction(ActionEvent event) {
+        sudokuBoard.modifyUsersArea(5, selectedRow, selectedCol);
+        drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+    }
+
+    @FXML
+    public void handleButtonSixAction(ActionEvent event) {
+        sudokuBoard.modifyUsersArea(6, selectedRow, selectedCol);
+        drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+    }
+
+    @FXML
+    public void handleButtonSevenAction(ActionEvent event) {
+        sudokuBoard.modifyUsersArea(7, selectedRow, selectedCol);
+        drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+    }
+
+    @FXML
+    public void handleButtonEightAction(ActionEvent event) {
+        sudokuBoard.modifyUsersArea(8, selectedRow, selectedCol);
+        drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+    }
+
+    @FXML
+    public void handleButtonNineAction(ActionEvent event) {
+        sudokuBoard.modifyUsersArea(9, selectedRow, selectedCol);
+        drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
+    }
+
 
     public void drawSudokuGridOnCanvas(GraphicsContext context) {
 

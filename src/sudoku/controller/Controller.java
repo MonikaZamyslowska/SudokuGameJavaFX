@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
@@ -18,14 +17,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    public static String EASY = "easy";
-    public static String MEDIUM = "medium";
-    public static String HARD = "hard";
-
     private SudokuBoard sudokuBoard;
     private int selectedRow;
     private int selectedCol;
-    private int level = 0;
+    private int level;
+    int[][] initialBoard;
+    int[][] playerBoard;
 
     @FXML private RadioButton radioButtonEasy;
     @FXML private RadioButton radioButtonMedium;
@@ -36,6 +33,8 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sudokuBoard = new SudokuBoard();
+        playerBoard = new int[9][9];
+        initialBoard = new int[9][9];
         GraphicsContext context = canvas.getGraphicsContext2D();
         drawSudokuGridOnCanvas(context);
         selectedCol = 0;
@@ -75,17 +74,21 @@ public class Controller implements Initializable {
 
     @FXML
     public void handleButtonStartAction(ActionEvent event) {
+        sudokuBoard.setPlayerBoard(new int[9][9]);
+        initialBoard = sudokuBoard.generateBoard(level);
+        playerBoard = sudokuBoard.getPlayerBoard();
         drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
     }
 
-    @FXML
-    public void handleButtonRestartAction(ActionEvent event) {
-
-    }
+    /*
+     * popracować nad zmianą kolorou czcionki podczas rozwiązywania sudoku (pętla, zmiana podczas rysowania)
+     */
 
     @FXML
     public void handleButtonSolveEvent(ActionEvent event) {
-
+        sudokuBoard.setPlayerBoard(new int[9][9]);
+        initialBoard = sudokuBoard.generateSolvingBoard(initialBoard);
+        drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
     }
 
     @FXML
@@ -144,7 +147,6 @@ public class Controller implements Initializable {
 
 
     public void drawSudokuGridOnCanvas(GraphicsContext context) {
-
         context.clearRect(0, 0, 450, 450);
         for(int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -160,10 +162,9 @@ public class Controller implements Initializable {
         context.setLineWidth(5);
         context.strokeRoundRect(selectedCol * 50 + 2, selectedRow * 50 + 2, 46, 46, 10, 10);
 
-        int[][] initial = sudokuBoard.getBoard();
         for(int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                int actualNumber = initial[row][col];
+                int actualNumber = initialBoard[row][col];
                 int position_y = row * 50 + 30;
                 int position_x = col * 50 + 20;
                 context.setFill(Color.BLACK);
@@ -174,10 +175,9 @@ public class Controller implements Initializable {
             }
         }
 
-        int[][] player = sudokuBoard.getPlayerBoard();
         for(int row = 0; row < 9; row++) {
             for(int col = 0; col < 9; col++) {
-                int actualNumber = player[row][col];
+                int actualNumber = playerBoard[row][col];
                 int position_y = row * 50 + 30;
                 int position_x = col * 50 + 20;
                 context.setFill(Color.BLUE);

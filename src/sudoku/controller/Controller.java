@@ -21,6 +21,7 @@ public class Controller implements Initializable {
     private int selectedRow;
     private int selectedCol;
     private int level;
+    private boolean isSolveButtonPressed;
     int[][] initialBoard;
     int[][] playerBoard;
 
@@ -54,18 +55,16 @@ public class Controller implements Initializable {
     public void handleButtonStartAction(ActionEvent event) {
         reloadApp();
         initialBoard = sudokuBoard.generateBoard(level);
+        sudokuBoard.deepCopy(initialBoard);
         playerBoard = sudokuBoard.getPlayerBoard();
         drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
     }
 
     @FXML
     public void handleButtonSolveEvent(ActionEvent event) {
+        isSolveButtonPressed = true;
         playerBoard = new int[9][9];
-        initialBoard = new int[9][9];
-        sudokuBoard.setPlayerBoard(new int[9][9]);
-        sudokuBoard.setBoard(new int[9][9]);
-        initialBoard = sudokuBoard.generateBoard(level);
-        initialBoard = sudokuBoard.generateSolvingBoard(initialBoard);
+        initialBoard = sudokuBoard.generateSolvingBoard(sudokuBoard.getCopyBoard());
         drawSudokuGridOnCanvas(canvas.getGraphicsContext2D());
     }
 
@@ -182,11 +181,13 @@ public class Controller implements Initializable {
             }
         }
 
-        if(sudokuBoard.checkForSuccessGeneral()) {
-            context.clearRect(0, 0, 450, 450);
-            context.setFill(Color.GREEN);
-            context.setFont(new Font(36));
-            context.fillText("SUCCESS!", 150, 250);
+        if(sudokuBoard.checkSuccsess()) {
+            if (!isSolveButtonPressed) {
+                context.clearRect(0, 0, 450, 450);
+                context.setFill(Color.BLUE);
+                context.setFont(new Font(50));
+                context.fillText("Gratulation!!! \n Sudoku was solved!!!", 150, 250);
+            }
         }
     }
 
@@ -198,5 +199,6 @@ public class Controller implements Initializable {
         drawSudokuGridOnCanvas(context);
         selectedCol = 0;
         selectedRow = 0;
+        isSolveButtonPressed = false;
     }
 }

@@ -6,7 +6,6 @@ Implementation of Sudoku Solver in JavaFX. The user selects the level of difficu
 * JDK 1.8
 
 ## Sudoku view
-#### Main view:
 ![main png](https://github.com/MonikaZamyslowska/SudokuGameJavaFX/blob/master/view2.png)
 
 ## Project launch

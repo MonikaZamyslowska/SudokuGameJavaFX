@@ -184,9 +184,10 @@ public class Controller implements Initializable {
         if(sudokuBoard.checkSuccess()) {
             if (!isSolveButtonPressed) {
                 context.clearRect(0, 0, 450, 450);
-                context.setFill(Color.BLUE);
-                context.setFont(new Font(50));
-                context.fillText("Gratulation!!! \n Sudoku was solved!!!", 150, 250);
+                context.setFill(Color.DARKMAGENTA);
+                context.setFont(new Font(java.awt.Font.SERIF, 40));
+                context.fillText("Sudoku was solved!!!", 60, 200);
+                context.fillText("Gratulation!!!", 120, 250);
             }
         }
     }

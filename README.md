@@ -16,5 +16,8 @@ Implementation of Sudoku Solver in JavaFX. The user selects the level of difficu
 To run this project, install it locally using git clone:
 [https://github.com/MonikaZamyslowska/SudokuGameJavaFX.git](https://github.com/MonikaZamyslowska/SudokuGameJavaFX.git)
 
+## Sources
+This project is an extensive version from the [task](https://github.com/MonikaZamyslowska/sudoku-game), that I did when I took part in the bootcamp at the [Kodilla](https://kodilla.com/pl) school.
+
 ## In the near future
 * Creating the method to generate Sudoku

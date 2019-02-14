@@ -9,9 +9,6 @@ Implementation of Sudoku Solver in JavaFX. The user selects the level of difficu
 #### Main view:
 ![main png](https://github.com/MonikaZamyslowska/SudokuGameJavaFX/blob/master/view2.png)
 
-#### End view:
-![end png](https://github.com/MonikaZamyslowska/SudokuGameJavaFX/blob/master/view1.png)
-
 ## Project launch
 To run this project, install it locally using git clone:
 [https://github.com/MonikaZamyslowska/SudokuGameJavaFX.git](https://github.com/MonikaZamyslowska/SudokuGameJavaFX.git)

@@ -181,7 +181,7 @@ public class Controller implements Initializable {
             }
         }
 
-        if(sudokuBoard.checkSuccsess()) {
+        if(sudokuBoard.checkSuccess()) {
             if (!isSolveButtonPressed) {
                 context.clearRect(0, 0, 450, 450);
                 context.setFill(Color.BLUE);

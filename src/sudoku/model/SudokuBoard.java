@@ -82,7 +82,7 @@ public class SudokuBoard {
         }
     }
 
-    public boolean checkSuccsess() {
+    public boolean checkSuccess() {
         sudokuSolver = new SudokuSolver();
 
         int[][] combined = new int[9][9];

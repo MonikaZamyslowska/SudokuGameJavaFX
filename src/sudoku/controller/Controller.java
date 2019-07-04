@@ -187,7 +187,7 @@ public class Controller implements Initializable {
                 context.setFill(Color.DARKMAGENTA);
                 context.setFont(new Font(java.awt.Font.SERIF, 40));
                 context.fillText("Sudoku was solved!!!", 60, 200);
-                context.fillText("Gratulation!!!", 120, 250);
+                context.fillText("Congratulations!!!", 120, 250);
             }
         }
     }
